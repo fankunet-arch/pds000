@@ -14,7 +14,7 @@ $success_message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Basic validation
     if (empty($_POST['item_code']) || empty($_POST['item_name']) || empty($_POST['base_unit']) || empty($_POST['tags'])) {
-        $error_message = "All fields are required, and at least one item type must be selected.";
+        $error_message = t('error_all_fields_required');
     } else {
         $item_data = [
             'item_code' => $_POST['item_code'],
@@ -28,10 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             $new_item_id = save_item($pdo, $item_data, $tag_ids);
-            $success_message = "Item '{$item_data['item_name']}' created successfully with ID: {$new_item_id}.";
+            $success_message = sprintf(t('success_item_created'), $item_data['item_name'], $new_item_id);
         } catch (Exception $e) {
-            // In a real app, you would log the detailed error.
-            $error_message = "Error saving item: " . $e->getMessage();
+            $error_message = sprintf(t('error_item_creation_failed'), $e->getMessage());
         }
     }
 }

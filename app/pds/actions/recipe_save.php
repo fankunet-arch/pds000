@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         empty($_POST['ingredients']) ||
         !is_array($_POST['ingredients'])
     ) {
-        $error_message = "Recipe header fields and at least one ingredient are required.";
+        $error_message = t('error_all_fields_required');
     } else {
         $recipe_data = [
             'target_item_id' => (int)$_POST['target_item_id'],
@@ -42,13 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (empty($ingredients_data)) {
-            $error_message = "At least one valid ingredient is required.";
+            $error_message = t('error_at_least_one_ingredient');
         } else {
             try {
                 $new_recipe_id = save_recipe($pdo, $recipe_data, $ingredients_data);
-                $success_message = "Recipe created successfully with ID: {$new_recipe_id}.";
+                $success_message = sprintf(t('success_recipe_created'), $new_recipe_id);
             } catch (Exception $e) {
-                $error_message = "Error saving recipe: " . $e->getMessage();
+                $error_message = sprintf(t('error_recipe_creation_failed'), $e->getMessage());
             }
         }
     }

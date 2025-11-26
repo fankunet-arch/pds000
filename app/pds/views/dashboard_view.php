@@ -5,18 +5,13 @@ if (!defined('PDS_ENTRY')) {
     die('Access denied.');
 }
 
-render_header(['page_title' => 'PDS Dashboard']);
+render_header(['page_title' => t('dashboard')]);
 ?>
 
-<p>Welcome to the PDS dashboard. Please use the links below to manage the system.</p>
-
-<nav>
-    <ul>
-        <li><a href="?action=item_save">Create New Item</a></li>
-        <li><a href="?action=recipe_save">Create New Recipe</a></li>
-        <li><a href="?action=recipe_detail">Traceability & BOM Explorer</a></li>
-    </ul>
-</nav>
+<div class="card">
+    <p>欢迎使用 PDS - 研发与备料系统。</p>
+    <p>请使用左侧的导航菜单开始操作。</p>
+</div>
 
 <?php
 render_footer();

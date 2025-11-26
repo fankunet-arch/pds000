@@ -1,65 +1,102 @@
-/* General Body & Typography */
+
+/* --- 核心布局与变量 --- */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --success-color: #28a745;
-    --danger-color: #dc3545;
-    --light-gray: #f8f9fa;
-    --dark-gray: #343a40;
-    --border-color: #dee2e6;
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --border-radius: 0.3rem;
-    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --primary-color: #4A90E2; /* 柔和的蓝色 */
+    --secondary-color: #50E3C2; /* 薄荷绿 */
+    --background-color: #F4F7F6; /* 淡灰色背景 */
+    --sidebar-bg-color: #2c3e50; /* 深蓝灰色侧边栏 */
+    --sidebar-text-color: #ecf0f1; /* 浅灰色文字 */
+    --sidebar-hover-color: #34495e;
+    --card-bg-color: #FFFFFF;
+    --text-color: #333;
+    --border-color: #E0E0E0;
+    --font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 body {
     font-family: var(--font-family);
     line-height: 1.6;
-    background-color: var(--light-gray);
-    color: var(--dark-gray);
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- 侧边栏导航 --- */
+.sidebar {
+    width: 240px;
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
     padding: 20px;
+    flex-shrink: 0;
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+.sidebar h1 {
+    font-size: 1.5em;
+    margin: 0 0 30px;
+    text-align: center;
+    color: #fff;
+    border: none;
 }
 
-h1, h2 {
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    color: var(--dark-gray);
+.sidebar h1 a {
+    color: inherit;
+    text-decoration: none;
 }
 
-/* Navigation */
-nav ul {
+.main-nav ul {
     list-style: none;
     padding: 0;
 }
 
-nav li {
-    margin-bottom: 10px;
-}
-
-nav a {
+.main-nav li a {
+    display: block;
+    padding: 12px 15px;
+    color: var(--sidebar-text-color);
     text-decoration: none;
-    color: var(--primary-color);
-    font-size: 1.2em;
-    transition: color 0.2s ease-in-out;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
 }
 
-nav a:hover {
-    text-decoration: underline;
-    color: #0056b3;
+.main-nav li a:hover,
+.main-nav li a.active {
+    background-color: var(--sidebar-hover-color);
 }
 
-/* Forms */
+/* --- 主内容区域 --- */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h2 {
+    font-size: 2em;
+    color: var(--text-color);
+    border: none;
+    margin: 0;
+}
+
+/* --- 卡片式设计 --- */
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+/* --- 表单元素 --- */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -75,7 +112,7 @@ input[type="number"],
 select,
 textarea {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     box-sizing: border-box;
@@ -88,120 +125,85 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
 
-textarea {
-    height: 100px;
-    resize: vertical;
+select[multiple] {
+    height: auto;
+    min-height: 120px;
 }
 
-fieldset {
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: var(--border-radius);
-}
-
-legend {
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 0 10px;
-    color: var(--dark-gray);
-}
-
-/* Buttons */
-button, .button {
+/* --- 按钮 --- */
+.button, button {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
-    transition: background-color 0.2s, box-shadow 0.2s;
-    text-align: center;
-    text-decoration: none;
+    transition: all 0.2s ease-in-out;
 }
 
-button[type="submit"], .button-primary {
+.button-primary, button[type="submit"] {
     background-color: var(--primary-color);
     color: #fff;
 }
-
-button[type="submit"]:hover, .button-primary:hover {
-    background-color: #0069d9;
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.4);
+.button-primary:hover, button[type="submit"]:hover {
+    background-color: #357ABD;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-button[type="button"], .button-secondary {
-    background-color: var(--secondary-color);
+.button-secondary {
+    background-color: #7f8c8d;
     color: #fff;
 }
-
-button[type="button"]:hover, .button-secondary:hover {
-    background-color: #5a6268;
+.button-secondary:hover {
+    background-color: #6c7a7b;
 }
 
-/* Tables */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-    box-shadow: var(--box-shadow);
-}
-
-th, td {
-    border: 1px solid var(--border-color);
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-    font-weight: 600;
-}
-
-/* Utility Classes */
-.error {
-    color: var(--danger-color);
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
-}
-
-.success {
-    color: var(--success-color);
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
-}
-
-/* Layout Specific */
+/* --- 追溯页面布局 --- */
 .traceability-container {
     display: flex;
-    gap: 40px;
+    gap: 30px;
 }
 
 .traceability-column {
     flex: 1;
 }
 
-#ingredients_container .ingredient-row {
+/* --- 配方配料行 --- */
+.ingredient-row {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
 }
-#ingredients_container .ingredient-row > *:first-child {
+.ingredient-row > select {
     flex-grow: 1;
 }
-#ingredients_container .remove-btn {
-    background-color: var(--danger-color);
+.ingredient-row .remove-btn {
+    background-color: #e74c3c;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+}
+
+/* --- 提示信息 --- */
+.message {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+}
+.message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }

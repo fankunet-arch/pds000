@@ -9,6 +9,17 @@ if (!defined('PDS_ENTRY')) {
 // We will add functions here as we build out the features.
 
 /**
+ * Simple translation function.
+ *
+ * @param string $key The translation key.
+ * @return string The translated string or the key itself if not found.
+ */
+function t($key) {
+    global $lang;
+    return isset($lang[$key]) ? $lang[$key] : $key;
+}
+
+/**
  * Fetches tags from the database, optionally filtered by group.
  *
  * @param PDO $pdo The PDO database connection object.

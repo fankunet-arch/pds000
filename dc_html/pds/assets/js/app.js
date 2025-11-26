@@ -19,29 +19,30 @@ function initializeRecipeForm() {
 
     let ingredientIndex = container.children.length;
 
-    // Use a global or a more robust way to pass this from PHP if it's dynamic
-    // For now, assuming `allItems` is available globally if the script is in the footer
-    // A better approach is to store it in a data attribute, e.g., data-items on the form
     const allItems = JSON.parse(document.body.getAttribute('data-all-items') || '[]');
+    const removeText = document.body.getAttribute('data-remove-text') || 'Remove';
+    const selectMaterialText = document.body.getAttribute('data-select-material-text') || '-- Select Material --';
+    const usageQtyPlaceholder = document.body.getAttribute('data-usage-qty-placeholder') || 'Usage Qty';
+    const consumableText = document.body.getAttribute('data-consumable-text') || 'Consumable';
 
     function createIngredientRow() {
         const index = ingredientIndex++;
         const row = document.createElement('div');
         row.className = 'ingredient-row';
 
-        let options = '<option value="">-- Select Material --</option>';
+        let options = `<option value="">${selectMaterialText}</option>`;
         allItems.forEach(item => {
             options += `<option value="${item.item_id}">${item.item_name}</option>`;
         });
 
         row.innerHTML = `
             <select name="ingredients[${index}][material_item_id]" required>${options}</select>
-            <input type="number" name="ingredients[${index}][usage_qty]" placeholder="Usage Qty" step="0.01" required>
+            <input type="number" name="ingredients[${index}][usage_qty]" placeholder="${usageQtyPlaceholder}" step="0.01" required>
             <label class="ingredient-consumable">
                 <input type="checkbox" name="ingredients[${index}][is_consumable]" value="1">
-                <span>Consumable</span>
+                <span>${consumableText}</span>
             </label>
-            <button type="button" class="remove-btn button-secondary">Remove</button>
+            <button type="button" class="remove-btn">${removeText}</button>
         `;
 
         container.appendChild(row);
