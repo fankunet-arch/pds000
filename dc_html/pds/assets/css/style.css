@@ -1,0 +1,207 @@
+/* General Body & Typography */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-gray: #f8f9fa;
+    --dark-gray: #343a40;
+    --border-color: #dee2e6;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --border-radius: 0.3rem;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+h1, h2 {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--dark-gray);
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    margin-bottom: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+fieldset {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0 10px;
+    color: var(--dark-gray);
+}
+
+/* Buttons */
+button, .button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+    text-decoration: none;
+}
+
+button[type="submit"], .button-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+button[type="submit"]:hover, .button-primary:hover {
+    background-color: #0069d9;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.4);
+}
+
+button[type="button"], .button-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+button[type="button"]:hover, .button-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+/* Utility Classes */
+.error {
+    color: var(--danger-color);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.success {
+    color: var(--success-color);
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+/* Layout Specific */
+.traceability-container {
+    display: flex;
+    gap: 40px;
+}
+
+.traceability-column {
+    flex: 1;
+}
+
+#ingredients_container .ingredient-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+#ingredients_container .ingredient-row > *:first-child {
+    flex-grow: 1;
+}
+#ingredients_container .remove-btn {
+    background-color: var(--danger-color);
+    color: white;
+    padding: 5px 10px;
+}

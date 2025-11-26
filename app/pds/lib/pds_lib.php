@@ -259,6 +259,25 @@ function trace_usage_recursive(PDO $pdo, int $material_item_id, array &$affected
  * @param string $view_name The name of the view file (without .php extension).
  * @param array $data Data to be extracted and made available to the view.
  */
+function render_header($data = []) {
+    render_view('header_view', $data);
+}
+
+/**
+ * Renders the footer template.
+ *
+ * @param array $data Data to be extracted and made available to the view.
+ */
+function render_footer($data = []) {
+    render_view('footer_view', $data);
+}
+
+/**
+ * Renders a view template.
+ *
+ * @param string $view_name The name of the view file (without .php extension).
+ * @param array $data Data to be extracted and made available to the view.
+ */
 function render_view($view_name, $data = []) {
     $view_file = PDS_APP_PATH . '/views/' . $view_name . '.php';
 

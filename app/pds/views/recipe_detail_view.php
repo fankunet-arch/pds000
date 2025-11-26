@@ -4,29 +4,13 @@
 if (!defined('PDS_ENTRY')) {
     die('Access denied.');
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Traceability Demo</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; display: flex; gap: 40px; }
-        .column { width: 45%; }
-        h1, h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        select { width: 300px; padding: 8px; }
-        button { padding: 10px 15px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 15px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-    </style>
-</head>
-<body>
 
-    <div class="column">
-        <h1>BOM Explosion (Forward Trace)</h1>
+render_header(['page_title' => 'Traceability Demo']);
+?>
+
+<div class="traceability-container">
+    <div class="traceability-column">
+        <h2>BOM Explosion (Forward Trace)</h2>
         <form action="?action=recipe_detail" method="get">
             <input type="hidden" name="action" value="recipe_detail">
             <div class="form-group">
@@ -43,7 +27,7 @@ if (!defined('PDS_ENTRY')) {
         </form>
 
         <?php if (isset($bom_results)): ?>
-            <h2>Raw Materials for 1 unit of "<?php echo htmlspecialchars($selected_product_name); ?>"</h2>
+            <h3>Raw Materials for 1 unit of "<?php echo htmlspecialchars($selected_product_name); ?>"</h3>
             <?php if (empty($bom_results)): ?>
                 <p>No raw materials found. This might be a raw material itself or a product without a defined recipe.</p>
             <?php else: ?>
@@ -69,8 +53,8 @@ if (!defined('PDS_ENTRY')) {
         <?php endif; ?>
     </div>
 
-    <div class="column">
-        <h1>Impact Analysis (Reverse Trace)</h1>
+    <div class="traceability-column">
+        <h2>Impact Analysis (Reverse Trace)</h2>
         <form action="?action=recipe_detail" method="get">
             <input type="hidden" name="action" value="recipe_detail">
             <div class="form-group">
@@ -87,7 +71,7 @@ if (!defined('PDS_ENTRY')) {
         </form>
 
         <?php if (isset($usage_results)): ?>
-            <h2>Affected Final Products by "<?php echo htmlspecialchars($selected_material_name); ?>"</h2>
+            <h3>Affected Final Products by "<?php echo htmlspecialchars($selected_material_name); ?>"</h3>
             <?php if (empty($usage_results)): ?>
                 <p>This material does not affect any final products.</p>
             <?php else: ?>
@@ -110,6 +94,7 @@ if (!defined('PDS_ENTRY')) {
             <?php endif; ?>
         <?php endif; ?>
     </div>
+</div>
 
-</body>
-</html>
+<?php
+render_footer();

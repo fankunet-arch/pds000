@@ -55,13 +55,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch data for the view
-try {
-    $all_items = get_all_items($pdo);
-    $process_location_tags = get_tags($pdo, 'ProcessLocation');
-} catch (Exception $e) {
-    $error_message = "Error fetching data for the form: " . $e->getMessage();
-    $all_items = [];
-    $process_location_tags = [];
+$all_items = [];
+$process_location_tags = [];
+if ($pdo) {
+    try {
+        $all_items = get_all_items($pdo);
+        $process_location_tags = get_tags($pdo, 'ProcessLocation');
+    } catch (Exception $e) {
+        $error_message = "Error fetching data for the form: " . $e->getMessage();
+    }
+} elseif (!isset($success_message)) {
+    $error_message = "Database connection not available.";
 }
 
 render_view('recipe_form_view', [

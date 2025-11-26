@@ -37,11 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch data for the view
-try {
-    $item_type_tags = get_tags($pdo, 'ItemType');
-} catch (Exception $e) {
-    $error_message = "Error fetching tags: " . $e->getMessage();
-    $item_type_tags = [];
+$item_type_tags = [];
+if ($pdo) {
+    try {
+        $item_type_tags = get_tags($pdo, 'ItemType');
+    } catch (Exception $e) {
+        $error_message = "Error fetching tags: " . $e->getMessage();
+    }
+} elseif (!isset($success_message)) {
+    // Show DB error only if there isn't another message already.
+    $error_message = "Database connection not available.";
 }
 
 // Render the view
